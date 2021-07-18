@@ -1,6 +1,6 @@
 kind: application
 inputs:
-  - REVERSE_PROXY_URL
+  - API_URL
   - DOCKER_TAG
 
 infrastructure:
