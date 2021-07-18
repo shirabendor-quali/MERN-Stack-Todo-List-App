@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const todoRoutes = express.Router();
-const PORT = 4000;
+const PORT = 7000;
 let Todo = require('./todo.model');
 
 const app = express();
@@ -11,7 +11,9 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost:27017/todos', { useNewUrlParser: true });
+const {DB_URL} = process.env
+
+mongoose.connect(`mongodb://${DB_URL}:27017/todos`, { useNewUrlParser: true });
 const connection = mongoose.connection;
 
 // Once the connection is established, callback
