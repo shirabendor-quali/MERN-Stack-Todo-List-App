@@ -13,7 +13,7 @@ clouds:
 applications:
   - todo-ui:
       input_values:
-        - REVERSE_PROXY_URL: $colony.applications.todo-api.dns
+        - API_URL: $colony.applications.todo-api.dns
         - DOCKER_TAG: $version
       depends_on:
         - todo-api  
