@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+  todo-ui:
+    image: colonysamples/todo-ui:${TAG}
+    build: ./src/client
+    ports:
+      - 80:80
+    environment:
+      - REVERSE_PROXY_URL=host.docker.internal
+  todo-api:
+    image: colonysamples/todo-api:${TAG}
+    build: ./src/backend
+    ports:
+      - 7000:7000
+    environment:
+      - DB_URL=host.docker.internal
+  db:
+    image: mongo:4.4.6
+    ports:
+      - 27017:27017
+    

@@ -1,0 +1,12 @@
+### LIST ALL
+GET http://localhost/todos
+
+### CREATE NEW
+POST http://localhost/todos/add
+
+{
+            "todo_description": "DESCRIPTION",
+            "todo_responsible": "RESPONSIBLE",
+            "todo_priority": "PRIORITY",
+            "todo_completed": false
+}
