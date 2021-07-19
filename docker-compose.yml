@@ -14,7 +14,7 @@ services:
       - 7000:7000
     environment:
       - DB_URL=host.docker.internal
-    restart: on-failure
+    restart: unless-stopped
   db:
     image: mongo:4.4.6
     ports:
