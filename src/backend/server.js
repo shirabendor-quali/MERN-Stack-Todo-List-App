@@ -13,13 +13,9 @@ app.use(bodyParser.json());
 
 const {DB_URL} = process.env
 
-mongoose.connect(`mongodb://${DB_URL}:27017/todos`, { useNewUrlParser: true });
-const connection = mongoose.connection;
-
-// Once the connection is established, callback
-connection.once('open', () => {
-    console.log("MongoDB database connection established successfully");
-});
+mongoose.connect(`mongodb://${DB_URL}:27017/todos`, { useNewUrlParser: true })
+    .then(() => console.log("Mongodb connected"))
+    .catch(err => console.log(err));
 
 todoRoutes.route('/').get( (req,res) => {
     Todo.find((err, todos) => {

@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const REVERSE_PROXY_URL = window.origin // USING A REVERSE PROXY
-console.log(`REVERSE PROXY: ${REVERSE_PROXY_URL}`)
-
 
 const Todo = props => (
     <tr>
@@ -28,16 +26,6 @@ export default class TodosList extends Component {
     }
 
     componentDidMount() {
-        axios.get(`${REVERSE_PROXY_URL}/todos`)
-            .then( res => {
-                this.setState({
-                    todos: res.data
-                })
-            })
-            .catch( err => console.log(err));
-    }
-
-    componentDidUpdate() {
         axios.get(`${REVERSE_PROXY_URL}/todos`)
             .then( res => {
                 this.setState({
