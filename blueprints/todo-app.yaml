@@ -19,8 +19,8 @@ applications:
         - todo-api  
   - todo-api:
       input_values:
-        - DB_URL: $colony.applications.mongodb.dns
+        - DB_URL: $colony.applications.mongodb-eks.dns
         - DOCKER_TAG: $version
       depends_on:
-        - mongodb
-  - mongodb:
+        - mongodb-eks
+  - mongodb-eks:
