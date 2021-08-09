@@ -8,11 +8,11 @@ infrastructure:
     external:
       - port_info:
           port: 80
-          path: ''
   compute:
     spec:        
-      kubernetes:
+     kubernetes:
         cpu: 250m
+        ram: 64Mi 
 configuration:
   initialization:
     script: todo-ui.sh
