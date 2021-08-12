@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: QualiSystemsLab/torque-validate-bp-action@v0.0.1
+    - uses: QualiSystemsLab/colony-validate-bp-action@v0.0.1
       with:
         space: Trial
         files_list: blueprints/todo-app.yaml
-        torque_token: ${{ secrets.torque_TOKEN }}
+        colony_token: ${{ secrets.colony_TOKEN }}
   build:
     needs: validate
     runs-on: ubuntu-latest
@@ -20,7 +20,7 @@ jobs:
       - run: echo "TAG=$GITHUB_SHA" >> $GITHUB_ENV
       - run: echo $TAG
       - run: docker-compose build
-      - run: docker login -u torquesamples -p ${{ secrets.DOCKERHUB_PASSWORD }}
+      - run: docker login -u colonysamples -p ${{ secrets.DOCKERHUB_PASSWORD }}
       - run: docker-compose push
   integration-test:
     runs-on: ubuntu-latest
@@ -28,13 +28,13 @@ jobs:
     steps:
       - name: Print result URL
         run: echo "$GITHUB_RUN_ID"
-      - name: Start torque Sandbox
+      - name: Start colony Sandbox
         id: start-sandbox
-        uses: QualiSystemsLab/torque-start-sb-action@v0.0.1
+        uses: QualiSystemsLab/colony-start-sb-action@v0.0.1
         with:
           space: Trial
           blueprint_name: todo-app
-          torque_token: ${{ secrets.torque_TOKEN }}
+          colony_token: ${{ secrets.colony_TOKEN }}
           duration: 60
           timeout: 10
           inputs: version=${{ github.event.inputs.version}}
@@ -42,11 +42,11 @@ jobs:
       - name: Test link status code
         run: curl -I $(echo "${{ steps.start-sandbox.outputs.sandbox_shortcuts }}" | grep -o 'http.*' | head -c-4) | grep 200
       - name: Stop sandbox
-        uses: QualiSystemsLab/torque-end-sb-action@v0.0.1
+        uses: QualiSystemsLab/colony-end-sb-action@v0.0.1
         with:
           space: Trial
           sandbox_id: ${{ steps.start-sandbox.outputs.sandbox_id }}
-          torque_token: ${{ secrets.torque_TOKEN }}
+          colony_token: ${{ secrets.colony_TOKEN }}
   publish:
     needs: integration-test
     runs-on: ubuntu-latest
@@ -57,5 +57,5 @@ jobs:
       - run: echo "TAG=latest" >> $GITHUB_ENV
       - run: echo $TAG
       - run: docker-compose build
-      - run: docker login -u torquesamples -p ${{ secrets.DOCKERHUB_PASSWORD }}
+      - run: docker login -u colonysamples -p ${{ secrets.DOCKERHUB_PASSWORD }}
       - run: docker-compose push
