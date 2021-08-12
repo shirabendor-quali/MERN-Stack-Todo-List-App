@@ -10,7 +10,7 @@ metadata:
   description: >
     EKS deployment of todo-app
 clouds:
-  - AWS/EKS
+  - AWS1/EKS-Services-Ingress
 
 ingress:
   listeners:
