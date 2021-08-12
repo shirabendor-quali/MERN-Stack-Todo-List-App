@@ -14,6 +14,12 @@ clouds:
 
 ingress:
   listeners:
+    - http: 80
+      rules:
+      - host: ${torque.sandboxId}
+        path: /
+        application: todo-ui
+        port: 80
     - http: 7000
       rules:
       - host: ${torque.sandboxId}
