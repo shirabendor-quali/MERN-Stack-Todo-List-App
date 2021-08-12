@@ -16,16 +16,14 @@ ingress:
   listeners:
     - http: 80
       rules:
-      - host: ${torque.sandboxId}
-        path: /
-        application: todo-ui
-        port: 80
+        - application: todo-ui
+          port: 80
+          default: true
     - http: 7000
       rules:
-      - host: ${torque.sandboxId}
-        path: /todos
-        application: todo-api
-        port: 7000
+        - path: /todos
+          application: todo-api
+          port: 7000
 
 applications:
   - todo-ui:
