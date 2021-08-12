@@ -15,11 +15,7 @@ const {DB_URL} = process.env
 
 mongoose.connect(`mongodb://${DB_URL}:27017/todos`, { useNewUrlParser: true })
     .then(() => console.log("Mongodb connected"))
-    .catch(err => {
-        console.error(`ERROR: ${err.message}`)
-        process.exit(1)
-
-    });
+    .catch(err => console.log(err));
 
 todoRoutes.route('/').get( (req,res) => {
     Todo.find((err, todos) => {
