@@ -19,7 +19,7 @@ applications:
         - todo-api  
   - todo-api:
       input_values:
-        - DB_URL: $torqu.applications.mongodb.dns
+        - DB_URL: $torque.applications.mongodb.dns
         - DOCKER_TAG: $version
       depends_on:
         - mongodb
