@@ -10,13 +10,13 @@ metadata:
   description: >
     EKS deployment of todo-app
 clouds:
-  - AWS1/EKS-Services-Ingress
+  - AWS/EKS
 
 ingress:
   listeners:
     - http: 7000
       rules:
-      - host: ${torque.sandboxId}-nectar.${DOMAIN}
+      - host: ${torque.sandboxId}
         path: /todos
         application: todo-api
         port: 7000
