@@ -16,7 +16,7 @@ ingress:
   listeners:
     - http: 7000
       rules:
-      - host: ${colony.sandboxId}-nectar.${DOMAIN}
+      - host: ${torque.sandboxId}-nectar.${DOMAIN}
         path: /todos
         application: todo-api
         port: 7000
@@ -24,13 +24,13 @@ ingress:
 applications:
   - todo-ui:
       input_values:
-        - API_URL: $colony.applications.todo-api.dns
+        - API_URL: $torque.applications.todo-api.dns
         - DOCKER_TAG: $version
       depends_on:
         - todo-api
   - todo-api:
       input_values:
-        - DB_URL: $colony.applications.mongodb-eks.dns
+        - DB_URL: $torque.applications.mongodb-eks.dns
         - DOCKER_TAG: $version
       depends_on:
         - mongodb-eks

@@ -26,7 +26,7 @@ source:
   image:
     username: adminuser
     docker_image:
-      - name: colonysamples/todo-ui
+      - name: torquesamples/todo-ui
         tag: $DOCKER_TAG
         username: root
   os_type: linux

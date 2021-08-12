@@ -1,14 +1,14 @@
 version: "3.3"
 services:
   todo-ui:
-    image: colonysamples/todo-ui:${TAG}
+    image: torquesamples/todo-ui:${TAG}
     build: ./src/client
     ports:
       - 80:80
     environment:
       - REVERSE_PROXY_URL=host.docker.internal
   todo-api:
-    image: colonysamples/todo-api:${TAG}
+    image: torquesamples/todo-api:${TAG}
     build: ./src/backend
     ports:
       - 7000:7000

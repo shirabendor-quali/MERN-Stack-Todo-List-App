@@ -20,8 +20,8 @@ artifacts:
 #   - dns-a-record-set:
 #       input_values:
 #         - DOMAIN: $DOMAIN
-#         - HOST: '${colony.sandboxId}-nectar.${DOMAIN}'
-#         - SANDBOX_PUBLIC_ADDRESS: $colony.environment.public_address
+#         - HOST: '${torque.sandboxId}-nectar.${DOMAIN}'
+#         - SANDBOX_PUBLIC_ADDRESS: $torque.environment.public_address
 #       depends_on: 
 #         - nectar-web
 #         - nectar-api
@@ -37,17 +37,17 @@ ingress:
     - https: 443
       certificate: $CERT_ARN
       rules:
-      - host: ${colony.sandboxId}-nectar.${DOMAIN}
+      - host: ${torque.sandboxId}-nectar.${DOMAIN}
         path: /api/index
         application: nectar-api
-        shortcut: ${colony.sandboxId}.nectar-api.com
+        shortcut: ${torque.sandboxId}.nectar-api.com
         port: 3001
-      - host: ${colony.sandboxId}-nectar.${DOMAIN}
+      - host: ${torque.sandboxId}-nectar.${DOMAIN}
         path: /api/home
         application: nectar-api
-        shortcut: ${colony.sandboxId}-api.nectar.com
+        shortcut: ${torque.sandboxId}-api.nectar.com
         port: 3001
-      - host: ${colony.sandboxId}-nectar.${DOMAIN}
+      - host: ${torque.sandboxId}-nectar.${DOMAIN}
         application: nectar-web
         port: 3000
 
