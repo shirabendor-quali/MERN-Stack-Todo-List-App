@@ -24,5 +24,3 @@ applications:
       depends_on:
         - mongodb
   - mongodb:
-ingress:
-  enabled: false  
