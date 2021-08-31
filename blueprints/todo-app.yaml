@@ -31,6 +31,7 @@ ingress:
         - application: todo-ui
           port: 80
           default: true
+          shortcut: ${torque.environment.public_address}
     - http: 7000
       rules:
         - path: /todos
