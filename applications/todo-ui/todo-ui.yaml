@@ -12,7 +12,7 @@ infrastructure:
   compute:
     spec:        
       kubernetes:
-        cpu: 250m
+   
 configuration:
   initialization:
     script: todo-ui.sh
